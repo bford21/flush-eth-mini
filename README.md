@@ -1,6 +1,6 @@
-# Flush ETH Mini - Farcaster Mini App
+# Flush ETH Mini - Farcaster Mini App 🚽
 
-A Farcaster Mini App built with **Next.js**, featuring wallet connection functionality using the Farcaster Mini App SDK and Wagmi.
+A Farcaster Mini App built with **Next.js**, featuring an animated toilet bowl, wallet connection functionality, and the Farcaster Mini App SDK.
 
 ## 🚀 Quick Start
 
@@ -49,17 +49,20 @@ npm start
 - **@farcaster/miniapp-sdk** - Farcaster Mini App SDK
 - **@farcaster/miniapp-wagmi-connector** - Wagmi connector for Farcaster
 - **@tanstack/react-query** - Data fetching and caching
-- **CSS3** - Styling with modern features
+- **CSS3** - Advanced animations and styling
 
 ## ✨ Features
 
-- ✅ **Hello World Display** - Beautiful gradient UI with animations
+- 🚽 **Animated Toilet Bowl** - Beautiful CSS-based toilet with water effects
+- 💧 **Flush Animation** - Swirling water and draining ETH logos
+- 🌊 **Floating ETH Logos** - Dynamic ETH logos floating in the water
 - ✅ **Farcaster SDK Integration** - Proper initialization with `sdk.actions.ready()`
-- ✅ **Wallet Connection** - Connect Ethereum wallets (Base & Mainnet)
-- ✅ **Account Display** - Shows connected address, chain, and balance
-- ✅ **Responsive Design** - Works beautifully on mobile and desktop
-- ✅ **Error Handling** - Graceful error states and status display
-- ✅ **TypeScript** - Full type safety throughout
+- 🔗 **Wallet Connection** - Connect Ethereum wallets (Base & Mainnet)
+- 📊 **Account Display** - Shows connected address, chain, and balance
+- 📱 **Responsive Design** - Works beautifully on mobile and desktop
+- 🎨 **Glassmorphic UI** - Modern gradient background with blur effects
+- ⚡ **Error Handling** - Graceful error states and status display
+- 🔒 **TypeScript** - Full type safety throughout
 
 ## 📚 What's Inside
 
@@ -68,9 +71,10 @@ This mini app demonstrates:
 1. **Next.js App Router** - Modern React architecture
 2. **Farcaster SDK** - Quick Auth and native features access
 3. **Wallet Integration** - Using Wagmi with Farcaster connector
-4. **React Hooks** - `useEffect`, `useState`, `useAccount`, `useConnect`, etc.
-5. **Client-side Rendering** - With `'use client'` directive
-6. **Beautiful UI** - Glassmorphic design with gradient background
+4. **CSS Animations** - Complex keyframe animations for toilet effects
+5. **React Hooks** - `useEffect`, `useState`, `useAccount`, `useConnect`, etc.
+6. **Client-side Rendering** - With `'use client'` directive
+7. **Beautiful UI** - Custom toilet bowl built entirely with CSS
 
 ## 🗂️ Project Structure
 
@@ -79,18 +83,45 @@ flush-eth-mini/
 ├── app/
 │   ├── layout.tsx       # Root layout with metadata
 │   ├── page.tsx         # Main page with SDK & wallet
-│   └── globals.css      # Global styles
+│   └── globals.css      # Global styles & animations
 ├── components/
 │   ├── Providers.tsx    # Wagmi & Query Client providers
-│   └── WalletConnect.tsx # Wallet connection component
+│   ├── WalletConnect.tsx # Wallet connection component
+│   └── ToiletBowl.tsx   # Animated toilet bowl component
 ├── lib/
 │   └── wagmi-config.ts  # Wagmi configuration
+├── public/
+│   └── eth-logo.png     # ETH logo for floating animation
 ├── manifest.json        # App manifest for publishing
 ├── next.config.ts       # Next.js configuration
 ├── tsconfig.json        # TypeScript configuration
 ├── package.json         # Dependencies and scripts
 └── README.md           # Documentation
 ```
+
+## 🚽 The Toilet Bowl
+
+The toilet bowl is a fully CSS-based animation system featuring:
+
+### Visual Components
+- **Outer Bowl** - Ceramic-style gradient with realistic shadows
+- **Inner Bowl** - White porcelain with depth effects
+- **Water** - Animated blue gradient with wobbling motion
+- **Drain Hole** - Dark radial gradient at the bottom
+- **Flush Button** - Gradient button with hover effects
+
+### Animations
+- **Water Wobble** - Gentle bobbing motion (idle state)
+- **Flush Animation** - Water drains with rotating spiral effect
+- **ETH Float** - Multiple floating animations for ETH logos
+- **ETH Drain** - Logos spiral down into drain when flushing
+- **Swirl Effect** - Visual swirl overlay during flush
+
+### Features
+- Dynamic ETH logo count based on wallet state
+- Responsive sizing for mobile, tablet, and desktop
+- Performance-optimized (capped at 20 logos)
+- Smooth transitions and timing
 
 ## 🔌 Wallet Connection
 
@@ -141,13 +172,38 @@ export const config = createConfig({
 });
 ```
 
+## 🎨 Customization
+
+### Modifying the Toilet
+
+The toilet component is in `components/ToiletBowl.tsx`. You can customize:
+
+- **Colors** - Change gradient colors in the className props
+- **Size** - Adjust the width/height classes
+- **Animation Speed** - Modify timing in `globals.css` animations
+- **Logo Count** - Change the calculation in `getLogoCount()`
+- **Button Style** - Customize the flush button appearance
+
+### Adding Features
+
+The toilet component accepts these props:
+
+```typescript
+interface ToiletBowlProps {
+  flushableAmount?: bigint;  // Amount to display
+  onFlush?: () => void;      // Callback when flushed
+  isPending?: boolean;       // Loading state
+}
+```
+
 ## 🔑 Important Notes
 
 1. **Always call `sdk.actions.ready()`** - This is critical! Without it, users will see an infinite loading screen.
-2. **Client Components** - The main page and wallet component use `'use client'` directive because they require browser APIs.
+2. **Client Components** - The main page and components use `'use client'` directive because they require browser APIs.
 3. **Static Export** - Configured for static export (`output: 'export'`) to make deployment easier.
 4. **Enable Developer Mode** - Visit https://farcaster.xyz/~/settings/developer-tools to enable developer mode in Farcaster.
 5. **Test in Farcaster** - While the app works in a regular browser, the full SDK features are available when running in a Farcaster client.
+6. **ETH Logo** - Make sure `eth-logo.png` is in the `public` folder.
 
 ## 📦 Deployment
 
@@ -176,37 +232,15 @@ After deploying, update `manifest.json` with your deployment URL.
 
 - Add transaction capabilities using `useSendTransaction`
 - Integrate with smart contracts using `useContractWrite`
-- Add ENS name resolution
+- Add contract interactions (like the original BETH flush function)
 - Implement token swaps or NFT interactions
 - Add Quick Auth for authenticated backend requests
+- Add sound effects (toilet flush sound)
+- Implement score tracking or gamification
 
-## 🎨 Customization
+## 🎮 Inspired By
 
-### Adding More Pages
-
-Create new files in the `app` directory:
-
-```tsx
-// app/about/page.tsx
-export default function About() {
-  return <div>About Page</div>;
-}
-```
-
-### Adding API Routes
-
-Create API routes in `app/api`:
-
-```tsx
-// app/api/hello/route.ts
-export async function GET() {
-  return Response.json({ message: 'Hello from API' });
-}
-```
-
-### Styling
-
-Modify `app/globals.css` or add component-specific CSS modules.
+This project was inspired by [Flush ETH](https://flush.eth.limo/) by [@cryptodevbrian](https://twitter.com/cryptodevbrian) - a fun way to burn force-sent ETH from the BETH contract.
 
 ## 📖 Resources
 
@@ -215,8 +249,15 @@ Modify `app/globals.css` or add component-specific CSS modules.
 - [Farcaster Wallet Integration](https://miniapps.farcaster.xyz/docs/guides/wallets)
 - [Wagmi Documentation](https://wagmi.sh)
 - [Viem Documentation](https://viem.sh)
+- [Original Flush ETH](https://github.com/bford21/flush-eth)
 
 ## 🐛 Troubleshooting
+
+### Toilet Not Displaying
+
+- Check that `eth-logo.png` exists in the `public` folder
+- Verify all CSS animations are loaded
+- Check browser console for errors
 
 ### Wallet Not Connecting
 
@@ -229,6 +270,12 @@ Modify `app/globals.css` or add component-specific CSS modules.
 - Verify Node.js version: `node --version` (must be 22.11.0+)
 - Clear `.next` folder: `rm -rf .next`
 - Clear node_modules and reinstall: `rm -rf node_modules && npm install`
+
+### Animations Not Working
+
+- Make sure you're using a modern browser (Chrome, Firefox, Safari, Edge)
+- Check that CSS animations are enabled in your browser
+- Verify the CSS file was properly updated
 
 ## 📄 License
 
