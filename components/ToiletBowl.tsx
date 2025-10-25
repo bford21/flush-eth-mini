@@ -1,18 +1,16 @@
 'use client';
 
-import { useAccount } from 'wagmi';
-
 interface ToiletBowlProps {
   toiletBalance: number;
   isFlushAnimating?: boolean;
 }
 
 export function ToiletBowl({ toiletBalance = 0, isFlushAnimating = false }: ToiletBowlProps) {
-  const { address } = useAccount();
   
   // Calculate number of ETH logos based on toilet balance
   const getLogoCount = () => {
-    if (toiletBalance === 0) return 3; // Default for demo
+    if (toiletBalance === 0) return 0; // No logos when empty
+    // 1 logo for any amount > 0, then +1 for every 0.001 ETH
     return Math.max(1, Math.min(Math.floor(toiletBalance / 0.001), 20)); // Cap at 20
   };
 
@@ -68,13 +66,13 @@ export function ToiletBowl({ toiletBalance = 0, isFlushAnimating = false }: Toil
             style={{ borderRadius: '50% / 30%' }}
           />
           
-          {/* Toilet Balance Display */}
+          {/* Flushable ETH Display */}
           {toiletBalance > 0 && !isFlushAnimating && (
             <div className="absolute top-[35%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 text-center">
               <div className="bg-gray-900/80 backdrop-blur-sm px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-xl sm:rounded-2xl border border-cyan-400/50 sm:border-2 shadow-xl">
-                <p className="text-[10px] sm:text-xs text-gray-400 font-semibold mb-0.5 sm:mb-1">In Toilet</p>
+                <p className="text-[10px] sm:text-xs text-gray-400 font-semibold mb-0.5 sm:mb-1">Flushable ETH</p>
                 <p className="text-lg sm:text-2xl md:text-3xl font-bold text-cyan-400 font-mono">
-                  {toiletBalance.toFixed(6)} ETH
+                  {toiletBalance.toFixed(6)}
                 </p>
               </div>
             </div>
@@ -97,8 +95,8 @@ export function ToiletBowl({ toiletBalance = 0, isFlushAnimating = false }: Toil
             </div>
           )}
           
-          {/* Dynamic ETH Logos - floating in water */}
-          {logoPositions.map((logo) => (
+          {/* Dynamic ETH Logos - floating in water based on flushable amount */}
+          {toiletBalance > 0 && logoPositions.map((logo) => (
             <div
               key={logo.id}
               className={`absolute z-10 ${isFlushAnimating ? 'animate-eth-drain' : logo.floatAnimation}`}
