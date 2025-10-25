@@ -1,0 +1,10 @@
+{
+  "name": "Flush ETH Mini",
+  "version": "1.0.0",
+  "description": "A simple Hello World Farcaster Mini App",
+  "icon": "",
+  "splashBackgroundColor": "#667eea",
+  "homeUrl": "https://your-deployment-url.com",
+  "embedUrl": "https://your-deployment-url.com"
+}
+
